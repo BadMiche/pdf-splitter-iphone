@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Recortar PDF">
+<title>Recortar PDF</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+  :root{
+    --paper:#f7f3ec;
+    --card:#fffefb;
+    --ink:#24201a;
+    --ink-soft:#5c5448;
+    --line:#e4ddd0;
+    --accent:#1f4d46;
+    --accent-soft:#dceae6;
+    --amber:#c77f33;
+    --amber-soft:#f6e7d2;
+    --danger:#a23b2d;
+    --radius:16px;
+    --shadow:0 1px 2px rgba(40,34,26,.04), 0 8px 24px rgba(40,34,26,.06);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:"Hanken Grotesk",-apple-system,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    font-size:16px;
+    line-height:1.5;
+    padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:20px 18px 60px;}
+  header.top{margin:8px 0 22px;}
+  .brand{
+    font-family:"Fraunces",serif;
+    font-weight:600;
+    font-size:30px;
+    letter-spacing:-.01em;
+    line-height:1.05;
+    display:flex;align-items:center;gap:10px;
+  }
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 4px var(--amber-soft);}
+  .tag{color:var(--ink-soft);font-size:14px;margin-top:6px;}
+  /* steps indicator */
+  .steps{display:flex;gap:6px;margin:18px 0 22px;}
+  .steps .s{flex:1;height:4px;border-radius:3px;background:var(--line);transition:.3s;}
+  .steps .s.on{background:var(--accent);}
+  .steps .s.done{background:var(--accent-soft);}
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:22px 20px;
+    margin-bottom:16px;
+  }
+  h2.sec{font-family:"Fraunces",serif;font-weight:600;font-size:21px;margin:0 0 4px;}
+  .hint{color:var(--ink-soft);font-size:14px;margin:0 0 16px;}
+  /* drop zone */
+  .drop{
+    border:2px dashed var(--line);
+    border-radius:14px;
+    padding:34px 18px;
+    text-align:center;
+    background:#fbf8f2;
+    transition:.2s;
+    cursor:pointer;
+  }
+  .drop:active{background:var(--accent-soft);border-color:var(--accent);}
+  .drop .ic{font-size:38px;line-height:1;margin-bottom:10px;}
+  .drop .big{font-weight:600;font-size:17px;}
+  .drop .sm{color:var(--ink-soft);font-size:13px;margin-top:4px;}
+  input[type=file]{display:none;}
+  /* buttons */
+  .btn{
+    appearance:none;border:none;cursor:pointer;
+    font-family:inherit;font-weight:600;font-size:16px;
+    border-radius:12px;padding:14px 18px;width:100%;
+    background:var(--accent);color:#fff;transition:.15s;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+  }
+  .btn:active{transform:scale(.98);}
+  .btn:disabled{opacity:.4;cursor:default;transform:none;}
+  .btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent);}
+  .btn.amber{background:var(--amber);}
+  .btn.sm{padding:10px 14px;font-size:14px;width:auto;}
+  .btn-row{display:flex;gap:10px;margin-top:14px;}
+  .btn-row .btn{flex:1;}
+  /* file pill */
+  .filepill{
+    display:flex;align-items:center;gap:12px;
+    background:var(--accent-soft);border-radius:12px;padding:12px 14px;margin-bottom:14px;
+  }
+  .filepill .nm{font-weight:600;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;}
+  .filepill .mt{color:var(--ink-soft);font-size:12px;}
+  /* divisions list */
+  .meta-line{font-size:13px;color:var(--ink-soft);margin-bottom:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .badge{background:var(--amber-soft);color:var(--amber);font-weight:600;font-size:11px;padding:3px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.03em;}
+  .badge.green{background:var(--accent-soft);color:var(--accent);}
+  .toolbar{display:flex;gap:8px;margin-bottom:12px;}
+  .toolbar .btn.sm{flex:1;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:500;}
+  .div{
+    border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;
+    display:flex;align-items:flex-start;gap:12px;transition:.15s;background:#fff;
+  }
+  .div.sel{border-color:var(--accent);background:var(--accent-soft);}
+  .chk{
+    width:24px;height:24px;border-radius:7px;border:2px solid var(--line);
+    flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:14px;transition:.15s;background:#fff;
+  }
+  .div.sel .chk{background:var(--accent);border-color:var(--accent);}
+  .div .body{flex:1;min-width:0;}
+  .div .ttl{font-weight:600;font-size:15px;line-height:1.3;word-break:break-word;}
+  .div .ttl[contenteditable]{outline:none;border-bottom:1px dashed transparent;}
+  .div .ttl[contenteditable]:focus{border-bottom-color:var(--accent);}
+  .div .pg{font-size:12px;color:var(--ink-soft);margin-top:3px;}
+  .lvl1{margin-left:18px;}
+  .lvl1 .ttl{font-weight:500;font-size:14px;}
+  .lvl2{margin-left:36px;}
+  .pg-edit{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:12px;color:var(--ink-soft);}
+  .pg-edit input{
+    width:54px;font-family:inherit;font-size:13px;padding:4px 6px;border:1px solid var(--line);
+    border-radius:7px;text-align:center;color:var(--ink);background:#fbf8f2;
+  }
+  /* format options */
+  .opt{
+    border:1.5px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;
+    cursor:pointer;display:flex;gap:12px;align-items:flex-start;transition:.15s;background:#fff;
+  }
+  .opt.sel{border-color:var(--accent);background:var(--accent-soft);}
+  .opt .radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);flex-shrink:0;margin-top:2px;transition:.15s;}
+  .opt.sel .radio{border-color:var(--accent);border-width:6px;}
+  .opt .ot{font-weight:600;font-size:15px;}
+  .opt .od{font-size:13px;color:var(--ink-soft);margin-top:2px;}
+  /* progress */
+  .prog-wrap{margin-top:16px;display:none;}
+  .prog-wrap.show{display:block;}
+  .prog-bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden;}
+  .prog-fill{height:100%;width:0;background:var(--accent);transition:width .25s;}
+  .prog-txt{font-size:13px;color:var(--ink-soft);margin-top:8px;text-align:center;}
+  .back{background:none;border:none;color:var(--accent);font-family:inherit;font-size:14px;font-weight:600;padding:8px 0;cursor:pointer;display:inline-flex;gap:5px;align-items:center;}
+  .hidden{display:none;}
+  .note{background:var(--amber-soft);border-radius:10px;padding:12px 14px;font-size:13px;color:#7a5219;margin-top:14px;line-height:1.45;}
+  .note b{color:#5e3e12;}
+  .empty{text-align:center;color:var(--ink-soft);padding:24px 10px;font-size:14px;}
+  .spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  footer{text-align:center;color:var(--ink-soft);font-size:12px;margin-top:30px;line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><span class="dot"></span>Recortar PDF</div>
+    <div class="tag">Divide um PDF grande em seções — tudo no seu aparelho, nada sai para servidor.</div>
+  </header>
+
+  <div class="steps">
+    <div class="s on" id="st0"></div>
+    <div class="s" id="st1"></div>
+    <div class="s" id="st2"></div>
+  </div>
+
+  <!-- STEP 0: UPLOAD -->
+  <section id="step0">
+    <div class="card">
+      <h2 class="sec">1 · Carregar o PDF</h2>
+      <p class="hint">Toque para escolher um arquivo dos seus Arquivos / iCloud.</p>
+      <label class="drop" for="fileInput" id="dropZone">
+        <div class="ic">📄</div>
+        <div class="big">Escolher PDF</div>
+        <div class="sm">Selecione do app Arquivos</div>
+      </label>
+      <input type="file" id="fileInput" accept="application/pdf,.pdf">
+    </div>
+  </section>
+
+  <!-- STEP 1: DIVISIONS -->
+  <section id="step1" class="hidden">
+    <button class="back" onclick="goStep(0)">‹ Trocar arquivo</button>
+    <div class="card">
+      <div class="filepill">
+        <span style="font-size:20px">📑</span>
+        <div class="nm" id="fileName">arquivo.pdf</div>
+        <div class="mt" id="filePages">— pág.</div>
+      </div>
+      <h2 class="sec">2 · Escolher as divisões</h2>
+      <div class="meta-line" id="detectMeta"></div>
+      <div class="toolbar">
+        <button class="btn sm" onclick="selectAll(true)">Selecionar tudo</button>
+        <button class="btn sm" onclick="selectAll(false)">Limpar</button>
+        <button class="btn sm" onclick="toggleManual()" id="manualBtn">Dividir manual</button>
+      </div>
+      <div id="manualBox" class="hidden">
+        <div class="pg-edit" style="margin-bottom:12px">
+          <span>Cortar a cada</span>
+          <input type="number" id="manualEvery" min="1" value="10">
+          <span>páginas</span>
+          <button class="btn sm" style="background:var(--accent);color:#fff" onclick="applyManual()">Aplicar</button>
+        </div>
+      </div>
+      <div id="divList"></div>
+      <div class="note">
+        <b>Dica:</b> toque no título para renomear. Ajuste as páginas de início/fim se um corte ficou no lugar errado — a divisão é sempre por página inteira.
+      </div>
+      <button class="btn" id="toFormatBtn" style="margin-top:16px" onclick="goStep(2)">Continuar ›</button>
+    </div>
+  </section>
+
+  <!-- STEP 2: FORMAT + DOWNLOAD -->
+  <section id="step2" class="hidden">
+    <button class="back" onclick="goStep(1)">‹ Voltar às divisões</button>
+    <div class="card">
+      <h2 class="sec">3 · Formato de saída</h2>
+      <p class="hint"><span id="selCount">0</span> divisão(ões) selecionada(s).</p>
+
+      <div class="opt sel" data-fmt="pdf" onclick="pickFormat('pdf')">
+        <div class="radio"></div>
+        <div><div class="ot">PDF com formatação</div><div class="od">Páginas originais, com imagens e layout intactos. Recomendado.</div></div>
+      </div>
+      <div class="opt" data-fmt="txtpdf" onclick="pickFormat('txtpdf')">
+        <div class="radio"></div>
+        <div><div class="ot">PDF apenas com o texto</div><div class="od">Texto extraído e remontado, sem imagens. Arquivo leve.</div></div>
+      </div>
+      <div class="opt" data-fmt="md" onclick="pickFormat('md')">
+        <div class="radio"></div>
+        <div><div class="ot">Markdown (.md)</div><div class="od">Texto puro com títulos em #. Ótimo para resumos e notas.</div></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn ghost" onclick="exportFiles('selected')" id="btnSel">Baixar selecionadas</button>
+        <button class="btn amber" onclick="exportFiles('all')" id="btnAll">Baixar tudo</button>
+      </div>
+
+      <div class="prog-wrap" id="progWrap">
+        <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+        <div class="prog-txt" id="progTxt">Processando…</div>
+      </div>
+
+      <div class="prog-wrap" id="resultBox">
+        <div class="filepill" style="background:var(--accent-soft)">
+          <span style="font-size:20px">✅</span>
+          <div class="nm" id="resultName"></div>
+        </div>
+        <button class="btn" onclick="shareNow()">📤 Salvar / Compartilhar</button>
+        <div class="prog-txt">Toque acima para abrir a folha do iOS e escolher <b>Salvar em Arquivos</b> e a pasta.</div>
+      </div>
+
+      <div class="note">
+        Vários arquivos saem juntos num <b>.zip</b> — o app Arquivos do iPhone descompacta com um toque.
+        <br><br><b>Importante:</b> isto precisa rodar no <b>Safari de verdade</b> (ou aberto da Tela de Início). Dentro de uma pré-visualização o iOS bloqueia o salvamento.
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Processamento 100% local · pdf.js · pdf-lib<br>
+    Adicione à Tela de Início para usar como app.
+  </footer>
+</div>
+
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+const { PDFDocument } = PDFLib;
+const { jsPDF } = window.jspdf;
+
+let state = {
+  file:null, name:"", arrayBuffer:null,
+  pdfjsDoc:null, numPages:0,
+  divisions:[],        // {title, start, end, level, selected}
+  format:"pdf"
+};
+
+/* ---------- navigation ---------- */
+function goStep(n){
+  for(let i=0;i<3;i++){
+    document.getElementById("step"+i).classList.toggle("hidden", i!==n);
+    const s=document.getElementById("st"+i);
+    s.classList.toggle("on", i===n);
+    s.classList.toggle("done", i<n);
+  }
+  if(n===2) refreshSelCount();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ---------- file load ---------- */
+const fileInput=document.getElementById("fileInput");
+fileInput.addEventListener("change",async e=>{
+  const f=e.target.files[0];
+  if(!f) return;
+  state.file=f; state.name=f.name;
+  const dz=document.getElementById("dropZone");
+  dz.innerHTML='<div class="ic">⏳</div><div class="big">Analisando…</div><div class="sm">Lendo estrutura do PDF</div>';
+  try{
+    state.arrayBuffer=await f.arrayBuffer();
+    state.pdfjsDoc=await pdfjsLib.getDocument({data:state.arrayBuffer.slice(0)}).promise;
+    state.numPages=state.pdfjsDoc.numPages;
+    document.getElementById("fileName").textContent=f.name;
+    document.getElementById("filePages").textContent=state.numPages+" pág.";
+    await detectDivisions();
+    renderDivisions();
+    goStep(1);
+  }catch(err){
+    console.error(err);
+    dz.innerHTML='<div class="ic">⚠️</div><div class="big">Não consegui ler</div><div class="sm">Tente outro PDF</div>';
+  }
+});
+
+/* ---------- division detection ---------- */
+async function detectDivisions(){
+  state.divisions=[];
+  let usedOutline=false;
+  try{
+    const outline=await state.pdfjsDoc.getOutline();
+    if(outline && outline.length){
+      const flat=[];
+      async function walk(items,level){
+        for(const it of items){
+          let pageIndex=null;
+          try{
+            let dest=it.dest;
+            if(typeof dest==="string") dest=await state.pdfjsDoc.getDestination(dest);
+            if(dest && dest[0]){ pageIndex=await state.pdfjsDoc.getPageIndex(dest[0]); }
+          }catch(e){}
+          if(pageIndex!==null) flat.push({title:(it.title||"Sem título").trim(),start:pageIndex+1,level});
+          if(it.items && it.items.length) await walk(it.items,level+1);
+        }
+      }
+      await walk(outline,0);
+      flat.sort((a,b)=>a.start-b.start);
+      if(flat.length){
+        usedOutline=true;
+        flat.forEach((d,i)=>{
+          d.end = i<flat.length-1 ? Math.max(d.start, flat[i+1].start-1) : state.numPages;
+          d.selected=true;
+        });
+        state.divisions=flat;
+      }
+    }
+  }catch(e){console.warn("outline falhou",e);}
+
+  let method = usedOutline ? "índice do PDF" : "heurística de títulos";
+  if(!usedOutline){
+    await heuristicDetect();
+    if(!state.divisions.length){
+      method="nenhuma — divida manual";
+    }
+  }
+
+  const meta=document.getElementById("detectMeta");
+  meta.innerHTML = `<span class="badge ${usedOutline?'green':''}">${usedOutline?'índice embutido':'detecção automática'}</span>`
+    + `<span>${state.divisions.length} divisão(ões) via <b>${method}</b></span>`;
+}
+
+async function heuristicDetect(){
+  const found=[];
+  const rx=/^\s*(cap[íi]tulo|chapter|se[çc][ãa]o|section|unidade|unit|parte\b|part\b|t[íi]tulo|m[óo]dulo|aula|tema)\b/i;
+  for(let p=1;p<=state.numPages;p++){
+    try{
+      const page=await state.pdfjsDoc.getPage(p);
+      const tc=await page.getTextContent();
+      if(!tc.items.length) continue;
+      // tamanhos de fonte
+      const sizes=tc.items.map(it=>Math.abs(it.transform[3])).filter(Boolean);
+      const med=sizes.slice().sort((a,b)=>a-b)[Math.floor(sizes.length/2)]||10;
+      // checar primeiros itens da página (topo)
+      const top=tc.items.slice(0,8);
+      for(const it of top){
+        const txt=(it.str||"").trim();
+        if(txt.length<3||txt.length>90) continue;
+        const sz=Math.abs(it.transform[3]);
+        const isBig = sz>=med*1.35;
+        const isKeyword = rx.test(txt);
+        if(isBig||isKeyword){
+          found.push({title:txt,start:p,level:0,selected:true});
+          break;
+        }
+      }
+    }catch(e){}
+  }
+  // dedup por página
+  const seen=new Set(); const clean=[];
+  for(const f of found){ if(!seen.has(f.start)){seen.add(f.start);clean.push(f);} }
+  clean.forEach((d,i)=>{ d.end = i<clean.length-1 ? clean[i+1].start-1 : state.numPages; });
+  // se nada começa na pág 1, cria abertura
+  if(clean.length && clean[0].start>1){
+    clean.unshift({title:"Início",start:1,end:clean[0].start-1,level:0,selected:true});
+  }
+  state.divisions=clean;
+}
+
+/* ---------- manual split ---------- */
+function toggleManual(){
+  document.getElementById("manualBox").classList.toggle("hidden");
+}
+function applyManual(){
+  const every=Math.max(1,parseInt(document.getElementById("manualEvery").value)||10);
+  const divs=[];
+  let n=1;
+  for(let p=1;p<=state.numPages;p+=every){
+    const end=Math.min(state.numPages,p+every-1);
+    divs.push({title:`Parte ${n} (pág. ${p}–${end})`,start:p,end,level:0,selected:true});
+    n++;
+  }
+  state.divisions=divs;
+  document.getElementById("detectMeta").innerHTML=`<span class="badge">manual</span><span>${divs.length} partes de até ${every} pág.</span>`;
+  renderDivisions();
+}
+
+/* ---------- render divisions ---------- */
+function renderDivisions(){
+  const list=document.getElementById("divList");
+  list.innerHTML="";
+  if(!state.divisions.length){
+    list.innerHTML='<div class="empty">Nenhuma divisão detectada.<br>Use <b>Dividir manual</b> acima.</div>';
+    document.getElementById("toFormatBtn").disabled=true;
+    return;
+  }
+  document.getElementById("toFormatBtn").disabled=false;
+  state.divisions.forEach((d,i)=>{
+    const el=document.createElement("div");
+    el.className="div"+(d.selected?" sel":"")+(d.level?(" lvl"+Math.min(d.level,2)):"");
+    el.innerHTML=`
+      <div class="chk">${d.selected?'✓':''}</div>
+      <div class="body">
+        <div class="ttl" contenteditable="true" spellcheck="false">${escapeHtml(d.title)}</div>
+        <div class="pg-edit">
+          pág. <input type="number" min="1" max="${state.numPages}" value="${d.start}" data-edit="start">
+          – <input type="number" min="1" max="${state.numPages}" value="${d.end}" data-edit="end">
+          <span style="margin-left:4px">(${d.end-d.start+1} pág.)</span>
+        </div>
+      </div>`;
+    // toggle select on checkbox
+    el.querySelector(".chk").addEventListener("click",()=>{ d.selected=!d.selected; renderDivisions(); });
+    // edit title
+    const ttl=el.querySelector(".ttl");
+    ttl.addEventListener("blur",()=>{ d.title=ttl.textContent.trim()||("Parte "+(i+1)); });
+    ttl.addEventListener("keydown",e=>{ if(e.key==="Enter"){e.preventDefault();ttl.blur();} });
+    // edit pages
+    el.querySelectorAll("input[data-edit]").forEach(inp=>{
+      inp.addEventListener("change",()=>{
+        let v=parseInt(inp.value)||1;
+        v=Math.min(state.numPages,Math.max(1,v));
+        d[inp.dataset.edit]=v;
+        if(d.end<d.start) d.end=d.start;
+        renderDivisions();
+      });
+    });
+    list.appendChild(el);
+  });
+}
+function selectAll(v){ state.divisions.forEach(d=>d.selected=v); renderDivisions(); }
+function escapeHtml(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+/* ---------- format pick ---------- */
+function pickFormat(f){
+  state.format=f;
+  document.querySelectorAll(".opt").forEach(o=>o.classList.toggle("sel",o.dataset.fmt===f));
+}
+function refreshSelCount(){
+  const n=state.divisions.filter(d=>d.selected).length;
+  document.getElementById("selCount").textContent=n;
+}
+
+/* ---------- export ---------- */
+function sanitize(name){return name.replace(/[\/\\:*?"<>|]/g,"-").replace(/\s+/g," ").trim().slice(0,60)||"parte";}
+
+async function getSectionText(start,end){
+  let out=[];
+  for(let p=start;p<=end;p++){
+    const page=await state.pdfjsDoc.getPage(p);
+    const tc=await page.getTextContent();
+    let lastY=null, line="";
+    const lines=[];
+    for(const it of tc.items){
+      const y=it.transform[5];
+      if(lastY!==null && Math.abs(y-lastY)>3){ lines.push(line); line=""; }
+      line+=it.str;
+      if(it.hasEOL) { lines.push(line); line=""; }
+      lastY=y;
+    }
+    if(line) lines.push(line);
+    out.push(lines.join("\n"));
+  }
+  return out.join("\n\n");
+}
+
+async function buildPdfFormatted(start,end){
+  const src=await PDFDocument.load(state.arrayBuffer.slice(0));
+  const dst=await PDFDocument.create();
+  const idx=[];
+  for(let p=start-1;p<=end-1;p++) idx.push(p);
+  const pages=await dst.copyPages(src,idx);
+  pages.forEach(pg=>dst.addPage(pg));
+  return await dst.save();
+}
+
+async function buildPdfText(start,end,title){
+  const text=await getSectionText(start,end);
+  const doc=new jsPDF({unit:"pt",format:"a4"});
+  const margin=48, width=doc.internal.pageSize.getWidth()-margin*2;
+  let y=margin;
+  doc.setFont("helvetica","bold"); doc.setFontSize(15);
+  const tl=doc.splitTextToSize(title,width);
+  tl.forEach(l=>{ doc.text(l,margin,y); y+=20; });
+  y+=6;
+  doc.setFont("helvetica","normal"); doc.setFontSize(11);
+  const lines=doc.splitTextToSize(text||"(sem texto extraível)",width);
+  const ph=doc.internal.pageSize.getHeight()-margin;
+  for(const l of lines){
+    if(y>ph){ doc.addPage(); y=margin; }
+    doc.text(l,margin,y); y+=15;
+  }
+  return doc.output("arraybuffer");
+}
+
+async function buildMarkdown(start,end,title){
+  const text=await getSectionText(start,end);
+  const rx=/^\s*(cap[íi]tulo|chapter|se[çc][ãa]o|section|unidade|parte|t[íi]tulo|m[óo]dulo|aula|tema)\b/i;
+  const lines=(text||"").split("\n");
+  let md="# "+title+"\n\n";
+  let buf=[];
+  const flush=()=>{ if(buf.length){ md+=buf.join(" ").trim()+"\n\n"; buf=[]; } };
+  for(let raw of lines){
+    const l=raw.trim();
+    if(!l){ flush(); continue; }
+    if(rx.test(l) && l.length<90){ flush(); md+="## "+l+"\n\n"; continue; }
+    buf.push(l);
+  }
+  flush();
+  return md;
+}
+
+let pendingOut=null; // {file, blob, name}
+
+function showSaveUI(file, blob, name){
+  pendingOut={file,blob,name};
+  document.getElementById("resultName").textContent=name;
+  document.getElementById("resultBox").classList.add("show");
+}
+
+async function shareNow(){
+  if(!pendingOut) return;
+  const {file,blob,name}=pendingOut;
+  // 1) Web Share API -> folha nativa do iOS com "Salvar em Arquivos"
+  try{
+    if(navigator.canShare && file && navigator.canShare({files:[file]})){
+      await navigator.share({files:[file], title:name});
+      return;
+    }
+  }catch(e){
+    if(e && e.name==="AbortError") return; // usuário cancelou a folha
+  }
+  // 2) Fallback: download por link
+  try{
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a");
+    a.href=url; a.download=name;
+    document.body.appendChild(a); a.click();
+    setTimeout(()=>{try{document.body.removeChild(a);}catch(_){}URL.revokeObjectURL(url);},2500);
+  }catch(e){
+    // 3) Último recurso: abrir em nova aba (visualizador do iOS tem botão compartilhar)
+    try{ window.open(URL.createObjectURL(blob),"_blank"); }
+    catch(_){ alert("Não foi possível salvar. Abra este arquivo no Safari (não numa pré-visualização)."); }
+  }
+}
+
+async function exportFiles(which){
+  const targets = which==="all" ? state.divisions : state.divisions.filter(d=>d.selected);
+  if(!targets.length){ alert("Selecione ao menos uma divisão."); return; }
+  const pw=document.getElementById("progWrap");
+  const fill=document.getElementById("progFill");
+  const txt=document.getElementById("progTxt");
+  pw.classList.add("show");
+  document.getElementById("resultBox").classList.remove("show");
+  pendingOut=null;
+  document.getElementById("btnSel").disabled=true;
+  document.getElementById("btnAll").disabled=true;
+
+  const fmt=state.format;
+  const ext = fmt==="md" ? "md" : "pdf";
+  const baseName = state.name.replace(/\.pdf$/i,"");
+  const files=[]; // {name, data(Uint8Array|string), isText}
+
+  try{
+    for(let i=0;i<targets.length;i++){
+      const d=targets[i];
+      txt.textContent=`Gerando ${i+1}/${targets.length}: ${d.title.slice(0,28)}…`;
+      fill.style.width=((i)/targets.length*100)+"%";
+      let data, isText=false;
+      if(fmt==="pdf") data=await buildPdfFormatted(d.start,d.end);
+      else if(fmt==="txtpdf") data=await buildPdfText(d.start,d.end,d.title);
+      else { data=await buildMarkdown(d.start,d.end,d.title); isText=true; }
+      const num=String(i+1).padStart(2,"0");
+      files.push({name:`${num} - ${sanitize(d.title)}.${ext}`, data, isText});
+      await new Promise(r=>setTimeout(r,10)); // deixa a UI respirar
+    }
+    fill.style.width="100%";
+
+    if(files.length===1){
+      const f=files[0];
+      const type=f.isText?"text/markdown":"application/pdf";
+      const blob=new Blob([f.data],{type});
+      const file=new File([f.data],f.name,{type});
+      showSaveUI(file,blob,f.name);
+    }else{
+      txt.textContent="Compactando .zip…";
+      const zip=new JSZip();
+      files.forEach(f=>zip.file(f.name,f.data));
+      const blob=await zip.generateAsync({type:"blob"});
+      const name=`${sanitize(baseName)} - secoes.zip`;
+      const file=new File([blob],name,{type:"application/zip"});
+      showSaveUI(file,blob,name);
+    }
+    txt.textContent="Arquivo pronto ✓ — toque em Salvar / Compartilhar abaixo.";
+  }catch(err){
+    console.error(err);
+    txt.textContent="Erro ao gerar. Tente outro formato.";
+  }finally{
+    document.getElementById("btnSel").disabled=false;
+    document.getElementById("btnAll").disabled=false;
+  }
+}
+</script>
+</body>
+</html>
