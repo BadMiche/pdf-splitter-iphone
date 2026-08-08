@@ -4,6 +4,8 @@
 **Finalidade:** servir de base de dados/referência para redação de capítulo sobre metabolismo do cálcio, paratireoides, vitamina D e osteoporose.
 **Data da pesquisa:** agosto de 2026.
 
+> **Documento complementar:** `apostila-metabolismo-do-calcio-fontes-brasileiras.md` — diretrizes das sociedades médicas brasileiras (SBEM/SBPC-ML, SBR, ABRASSO, SBP, FEBRASGO), protocolos oficiais do Ministério da Saúde/SUS (PCDTs) e dados epidemiológicos nacionais (BRAZOS, DATASUS). Consulte-o ao adaptar cada seção deste documento à realidade brasileira.
+
 > **Atribuição:** as referências deste documento foram levantadas **no PubMed** (via NCBI E-utilities). Todos os artigos citados trazem PMID e link DOI para a fonte original. As afirmações de conteúdo foram extraídas dos resumos e, quando disponível, do texto completo em acesso aberto (PubMed Central) dos documentos citados.
 
 ---
