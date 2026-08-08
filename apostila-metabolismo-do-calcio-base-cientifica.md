@@ -114,14 +114,14 @@ Buscas estruturadas no PubMed cobrindo: fisiologia do cálcio e do PTH, receptor
 
 **Ações extra-esqueléticas (imunomodulação, músculo, proliferação celular) — ver Seção 4.7 [NÃO ESTABELECIDO em termos de benefício clínico]:** existe expressão de VDR e de CYP27B1 em múltiplos tecidos (macrófagos, linfócitos, queratinócitos), o que é fato biológico; **daí não decorre benefício clínico comprovado da suplementação** em indivíduos suficientes.
 
-> Referência brasileira em acesso aberto para esta discussão: Ferreira CES, et al. **Vitamin D metabolism and extraskeletal outcomes: an update**. *Arch Endocrinol Metab* 2022. PMID 36382764 — https://doi.org/10.20945/2359-3997000000565
+> Referência brasileira em acesso aberto para esta discussão: **Vitamin D metabolism and extraskeletal outcomes: an update**. *Arch Endocrinol Metab* 2022. PMID 36382764 — https://doi.org/10.20945/2359-3997000000565
 
 ## 1.5 Eixo FGF23–α-Klotho e fosfato [CONSOLIDADO]
 
 - **FGF23:** produzido por **osteócitos/osteoblastos**; requer o cofator **α-Klotho** para sinalizar no rim.
 - Efeitos: **↓ reabsorção tubular de fosfato** (fosfatúria), **↓ CYP27B1** e **↑ CYP24A1** → **queda do calcitriol**. É, portanto, um hormônio **fosfatúrico e antivitamina D**.
 - **Relevância clínica:** raquitismo hipofosfatêmico ligado ao X (mutação *PHEX*, ↑FGF23), osteomalácia induzida por tumor, e o excesso de FGF23 como evento **precoce** na doença mineral óssea da DRC (precede a elevação do PTH e a hiperfosfatemia).
-- Revisão brasileira: Chaves LD, et al. **New treatments for rare bone diseases: hypophosphatemic rickets/osteomalacia**. *Arch Endocrinol Metab* 2022. PMID 36382755 — https://doi.org/10.20945/2359-3997000000555
+- Revisão brasileira: **New treatments for rare bone diseases: hypophosphatemic rickets/osteomalacia**. *Arch Endocrinol Metab* 2022. PMID 36382755 — https://doi.org/10.20945/2359-3997000000555
 
 ## 1.6 Calcitonina [CONSOLIDADO — com ressalva]
 
@@ -149,9 +149,9 @@ Fonte principal: Kenkre & Bassett, *Ann Clin Biochem* 2018. PMID 29368538 — ht
 > - Bilezikian JP, et al. **Evaluation and Management of Primary Hyperparathyroidism: Summary Statement and Guidelines from the Fifth International Workshop**. *J Bone Miner Res* 2022;37(11). PMID 36245251 — https://doi.org/10.1002/jbmr.4677 **[DIRETRIZ]**
 > - Bilezikian JP, et al. **Management of Primary Hyperparathyroidism**. *J Bone Miner Res* 2022;37(11):2391-2403. PMID 36054638 — https://doi.org/10.1002/jbmr.4682
 > - Minisola S, et al. **Epidemiology, Pathophysiology, and Genetics of PHPT**. PMID 36245271 — https://doi.org/10.1002/jbmr.4665
-> - Bilezikian JP, et al. **Classical and Nonclassical Manifestations of Primary Hyperparathyroidism**. PMID 36245249 — https://doi.org/10.1002/jbmr.4679
-> - Pasieka JL, et al. **Surgical Aspects of Primary Hyperparathyroidism**. PMID 36054175 — https://doi.org/10.1002/jbmr.4689
-> - Ye Z, et al. **The Efficacy and Safety of Medical and Surgical Therapy in PHPT: Systematic Review and Meta-Analysis of RCTs**. PMID 36053960 — https://doi.org/10.1002/jbmr.4685 **[MA]**
+> - **Classical and Nonclassical Manifestations of Primary Hyperparathyroidism**. PMID 36245249 — https://doi.org/10.1002/jbmr.4679
+> - **Surgical Aspects of Primary Hyperparathyroidism**. PMID 36054175 — https://doi.org/10.1002/jbmr.4689
+> - **The Efficacy and Safety of Medical and Surgical Therapy in PHPT: Systematic Review and Meta-Analysis of RCTs**. PMID 36053960 — https://doi.org/10.1002/jbmr.4685 **[MA]**
 > - Bilezikian JP, et al. **The Fifth International Workshop on the Evaluation and Management of PHPT**. PMID 36245277 — https://doi.org/10.1002/jbmr.4670
 > - Zhu CY, Sturgeon C, Yeh MW. **Hypercalcemia: A Review**. *JAMA* 2022. PMID 36282253 — https://doi.org/10.1001/jama.2022.18331 **[REVISÃO — excelente para aula]**
 
@@ -179,7 +179,7 @@ Fonte principal: Kenkre & Bassett, *Ann Clin Biochem* 2018. PMID 29368538 — ht
 
 **Passo 4 — Se PTH-dependente:** calciúria de 24 h + relação depuração cálcio/creatinina para diferenciar HPTP de FHH (Seção 2.5).
 
-> Revisão complementar sobre fármacos: Zeidan BS, et al. **Drug-Related Hypercalcemia**. *Endocrinol Metab Clin North Am* 2021. PMID 34774245 — https://doi.org/10.1016/j.ecl.2021.08.001
+> Revisão complementar sobre fármacos: **Drug-Related Hypercalcemia**. *Endocrinol Metab Clin North Am* 2021. PMID 34774245 — https://doi.org/10.1016/j.ecl.2021.08.001
 
 ## 2.2 HPTP — epidemiologia, patologia e genética
 
@@ -238,7 +238,7 @@ Fonte: Bilezikian et al., PMID 36245249 — https://doi.org/10.1002/jbmr.4679
 
 ## 2.6 Avaliação recomendada ao diagnóstico [DIRETRIZ]
 
-Com base no V Workshop (PMID 36245251) e na revisão de manejo clínico em acesso aberto (Bandeira F, et al., *Arch Endocrinol Metab* 2022, PMID 36382758 — https://doi.org/10.20945/2359-3997000000558):
+Com base no V Workshop (PMID 36245251) e na revisão de manejo clínico em acesso aberto ("Medical management of primary hyperparathyroidism", *Arch Endocrinol Metab* 2022, PMID 36382758 — https://doi.org/10.20945/2359-3997000000558):
 
 **Laboratório:** cálcio total + albumina (ou cálcio ionizado), **PTH**, fósforo, magnésio, fosfatase alcalina, **creatinina com TFGe**, **25(OH)D**, **cálcio urinário de 24 h com creatinina** (e perfil de risco litogênico quando indicado).
 
@@ -270,11 +270,11 @@ Com base no V Workshop (PMID 36245251) e na revisão de manejo clínico em acess
 
 **Cirurgia:** paratireoidectomia **minimamente invasiva/focada** guiada por imagem + **ioPTH** (queda >50% do valor basal aos 10 min) quando há localização concordante; **exploração cervical bilateral** quando imagem discordante, suspeita de doença multiglandular ou síndrome hereditária. Taxa de cura em mãos experientes >95%. (Pasieka et al., PMID 36054175 — https://doi.org/10.1002/jbmr.4689)
 
-**Benefício da cirurgia — evidência de ECR:** Ensaio randomizado demonstrou **efeito positivo da paratireoidectomia sobre a DMO em comparação à observação** no HPTP leve — Lundstam K, et al. *J Bone Miner Res* 2023. PMID 36593641 — https://doi.org/10.1002/jbmr.4763 **[ECR]**. Ver também a metanálise GRADE do Workshop (PMID 36053960 — https://doi.org/10.1002/jbmr.4685).
+**Benefício da cirurgia — evidência de ECR:** Ensaio randomizado demonstrou **efeito positivo da paratireoidectomia sobre a DMO em comparação à observação** no HPTP leve — *J Bone Miner Res* 2023. PMID 36593641 — https://doi.org/10.1002/jbmr.4763 **[ECR]**. Ver também a metanálise GRADE do Workshop (PMID 36053960 — https://doi.org/10.1002/jbmr.4685).
 
 ## 2.8 Tratamento clínico do HPTP [DIRETRIZ + REVISÃO]
 
-Fonte em acesso aberto com dados quantitativos (útil para montar tabela da apostila): Bandeira F, et al. **Medical management of primary hyperparathyroidism**. *Arch Endocrinol Metab* 2022. PMID 36382758 — https://doi.org/10.20945/2359-3997000000558
+Fonte em acesso aberto com dados quantitativos (útil para montar tabela da apostila): **Medical management of primary hyperparathyroidism**. *Arch Endocrinol Metab* 2022. PMID 36382758 — https://doi.org/10.20945/2359-3997000000558
 
 **Quando: paciente que preenche critério cirúrgico mas recusa ou tem contraindicação; ou paciente sem critério, em seguimento, com necessidade pontual.**
 
@@ -350,8 +350,8 @@ Quatro mecanismos (a memorizar):
 > **Documento de referência atual: II Workshop Internacional (2022), publicado no JBMR.**
 > - Khan AA, et al. **Evaluation and Management of Hypoparathyroidism Summary Statement and Guidelines from the Second International Workshop**. *J Bone Miner Res* 2022. PMID 36054621 — https://doi.org/10.1002/jbmr.4691 **[DIRETRIZ]**
 > - Bilezikian JP, et al. **Management of Hypoparathyroidism**. PMID 36161671 — https://doi.org/10.1002/jbmr.4716
-> - Mannstadt M, et al. **Hypoparathyroidism: Genetics and Diagnosis**. PMID 36375809 — https://doi.org/10.1002/jbmr.4667
-> - Pasieka JL, et al. **Etiology and Pathophysiology of Hypoparathyroidism: A Narrative Review**. PMID 36153665 — https://doi.org/10.1002/jbmr.4714
+> - **Hypoparathyroidism: Genetics and Diagnosis**. PMID 36375809 — https://doi.org/10.1002/jbmr.4667
+> - **Etiology and Pathophysiology of Hypoparathyroidism: A Narrative Review**. PMID 36153665 — https://doi.org/10.1002/jbmr.4714
 > - Khan AA, et al. **The Second International Workshop on the Evaluation and Management of Hypoparathyroidism**. PMID 36375811 — https://doi.org/10.1002/jbmr.4671
 > - **Resumo em português/acesso aberto (altamente recomendado como leitura para o capítulo):** Clarke BL. **Hypoparathyroidism: update of guidelines from the 2022 International Task Force**. *Arch Endocrinol Metab* 2022. PMID 36382749 — https://doi.org/10.20945/2359-3997000000549
 > - Atualização mais recente: **Best practice recommendations for the diagnosis and management of hypoparathyroidism**. *Metabolism* 2025. PMID 40581321 — https://doi.org/10.1016/j.metabol.2025.156335
@@ -608,7 +608,7 @@ Referências para posicionar o tema com equilíbrio: **Vitamin D metabolism and 
 > - Eastell R, et al. **Pharmacological Management of Osteoporosis in Postmenopausal Women: An Endocrine Society Clinical Practice Guideline**. *JCEM* 2019. PMID 30907953 — https://doi.org/10.1210/jc.2019-00221 **[DIRETRIZ]**
 > - Shoback D, et al. **… An Endocrine Society Guideline Update** (romosozumabe). *JCEM* 2020. PMID 32068863 — https://doi.org/10.1210/clinem/dgaa048 **[DIRETRIZ]**
 > - Qaseem A, et al. **Pharmacologic Treatment of Primary Osteoporosis or Low Bone Mass to Prevent Fractures in Adults: A Living Clinical Guideline from the ACP**. *Ann Intern Med* 2023. PMID 36592456 — https://doi.org/10.7326/M22-1034 **[DIRETRIZ]**
-> - Ayers C, et al. **Effectiveness and Safety of Treatments to Prevent Fractures… Living Systematic Review and Network Meta-analysis for the ACP**. *Ann Intern Med* 2023. PMID 36592455 — https://doi.org/10.7326/M22-0684 **[MA]**
+> - **Effectiveness and Safety of Treatments to Prevent Fractures… Living Systematic Review and Network Meta-analysis for the ACP**. *Ann Intern Med* 2023. PMID 36592455 — https://doi.org/10.7326/M22-0684 **[MA]**
 > - Humphrey MB, et al. **2022 American College of Rheumatology Guideline for the Prevention and Treatment of Glucocorticoid-Induced Osteoporosis**. *Arthritis Rheumatol* 2023. PMID 37845798 — https://doi.org/10.1002/art.42646 **[DIRETRIZ]** (versão em *Arthritis Care Res*: PMID 37884467 — https://doi.org/10.1002/acr.25240)
 
 ## 5.1 Definição [CONSOLIDADO + DIRETRIZ]
@@ -867,12 +867,12 @@ Proposta de esqueleto didático (com carga sugerida para uma apostila de gradua�
 | 6 | The Fifth International Workshop on the Evaluation and Management of PHPT. *JBMR* 2022 | 36245277 | https://doi.org/10.1002/jbmr.4670 |
 | 7 | Minisola S, et al. Epidemiology, Pathophysiology, and Genetics of PHPT. *JBMR* 2022 | 36245271 | https://doi.org/10.1002/jbmr.4665 |
 | 8 | Bilezikian JP, et al. Classical and Nonclassical Manifestations of PHPT. *JBMR* 2022 | 36245249 | https://doi.org/10.1002/jbmr.4679 |
-| 9 | Pasieka JL, et al. Surgical Aspects of PHPT. *JBMR* 2022 | 36054175 | https://doi.org/10.1002/jbmr.4689 |
+| 9 | Surgical Aspects of PHPT. *JBMR* 2022 | 36054175 | https://doi.org/10.1002/jbmr.4689 |
 | 10 | Bilezikian JP, et al. Management of PHPT. *JBMR* 2022 | 36054638 | https://doi.org/10.1002/jbmr.4682 |
-| 11 | Ye Z, et al. Efficacy and Safety of Medical and Surgical Therapy in PHPT: SR & MA of RCTs. *JBMR* 2022 | 36053960 | https://doi.org/10.1002/jbmr.4685 |
+| 11 | Efficacy and Safety of Medical and Surgical Therapy in PHPT: SR & MA of RCTs. *JBMR* 2022 | 36053960 | https://doi.org/10.1002/jbmr.4685 |
 | 12 | Methodology for the Guidelines on Evaluation and Management of Hypoparathyroidism and PHPT. *JBMR* 2022 | 36053800 | https://doi.org/10.1002/jbmr.4687 |
-| 13 | Lundstam K, et al. Positive Effect of Parathyroidectomy Compared to Observation on BMD in a RCT of Mild PHPT. *JBMR* 2023 | 36593641 | https://doi.org/10.1002/jbmr.4763 |
-| 14 | **Bandeira F, et al. Medical management of primary hyperparathyroidism.** *Arch Endocrinol Metab* 2022 **[acesso aberto]** | 36382758 | https://doi.org/10.20945/2359-3997000000558 |
+| 13 | Positive Effect of Parathyroidectomy Compared to Observation on BMD in a RCT of Mild PHPT. *JBMR* 2023 | 36593641 | https://doi.org/10.1002/jbmr.4763 |
+| 14 | **Medical management of primary hyperparathyroidism.** *Arch Endocrinol Metab* 2022 **[acesso aberto]** | 36382758 | https://doi.org/10.20945/2359-3997000000558 |
 | 15 | Surgery for primary hyperparathyroidism. *Arch Endocrinol Metab* 2022 | 36382757 | https://doi.org/10.20945/2359-3997000000557 |
 | 16 | Rosário PW, Calsolari MR. Normocalcemic primary hyperparathyroidism. *Arch Endocrinol Metab* 2022 | 36382756 | https://doi.org/10.20945/2359-3997000000556 |
 | 17 | Bilezikian JP, et al. Approach to the Patient: Normocalcemic PHPT. *JCEM* 2025 | 39319404 | https://doi.org/10.1210/clinem/dgae659 |
@@ -894,8 +894,8 @@ Proposta de esqueleto didático (com carga sugerida para uma apostila de gradua�
 | 28 | **Khan AA, et al. Evaluation and Management of Hypoparathyroidism: Summary Statement and Guidelines from the Second International Workshop.** *JBMR* 2022 **[DIRETRIZ CENTRAL]** | 36054621 | https://doi.org/10.1002/jbmr.4691 |
 | 29 | The Second International Workshop on the Evaluation and Management of Hypoparathyroidism. *JBMR* 2022 | 36375811 | https://doi.org/10.1002/jbmr.4671 |
 | 30 | Bilezikian JP, et al. Management of Hypoparathyroidism. *JBMR* 2022 | 36161671 | https://doi.org/10.1002/jbmr.4716 |
-| 31 | Mannstadt M, et al. Hypoparathyroidism: Genetics and Diagnosis. *JBMR* 2022 | 36375809 | https://doi.org/10.1002/jbmr.4667 |
-| 32 | Pasieka JL, et al. Etiology and Pathophysiology of Hypoparathyroidism: A Narrative Review. *JBMR* 2022 | 36153665 | https://doi.org/10.1002/jbmr.4714 |
+| 31 | Hypoparathyroidism: Genetics and Diagnosis. *JBMR* 2022 | 36375809 | https://doi.org/10.1002/jbmr.4667 |
+| 32 | Etiology and Pathophysiology of Hypoparathyroidism: A Narrative Review. *JBMR* 2022 | 36153665 | https://doi.org/10.1002/jbmr.4714 |
 | 33 | Complications, Symptoms, Presurgical Predictors in Chronic Hypoparathyroidism: A Systematic Review. *JBMR* 2022 | 36375810 | https://doi.org/10.1002/jbmr.4673 |
 | 34 | Epidemiology and Financial Burden of Adult Chronic Hypoparathyroidism. *JBMR* 2022 | 36054571 | https://doi.org/10.1002/jbmr.4675 |
 | 35 | Calcium Supplements in the Treatment of Hypoparathyroidism. *JBMR* 2022 | 36089817 | https://doi.org/10.1002/jbmr.4692 |

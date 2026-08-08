@@ -317,7 +317,7 @@ O periódico **Archives of Endocrinology and Metabolism** (órgão oficial da SB
 > **Um paradoxo que rende discussão em sala:** a fratura de quadril é **mais incidente em mulheres** (68% das internações) mas **mais letal em homens** (5,45% vs. média de 5%). O mesmo padrão aparece na literatura internacional. Boa pergunta para o estudante: por quê? (Respostas plausíveis: maior carga de comorbidades, diagnóstico e tratamento mais tardios da osteoporose masculina, subvalorização do rastreamento em homens.)
 
 Complementar, com foco em custos:
-> **Bortolon PC, Andrade CLT, Andrade CAF. Características das internações por fratura de fêmur por queda em idosos no SUS, Brasil, 2006-2008.** *Cad Saude Publica* 2011;27(4):733-42. PMID 21603756 — https://doi.org/10.1590/s0102-311x2011000100010
+> **Bortolon PC, Andrade CLT, Andrade CAF. Características das internações por fratura osteoporótica de fêmur em idosos no SUS, Brasil, 2006-2008.** *Cad Saude Publica* 2011;27(4):733-42. PMID 21603756 — https://doi.org/10.1590/s0102-311x2011000400012
 > Fraturas de quadril responderam por **cerca de 2% dos gastos de atenção à saúde** de pessoas com 60 anos ou mais; **42,7%** das internações ocorreram **fora do município de residência**.
 
 ## 3.3 Hipovitaminose D no Brasil — o paradoxo do país tropical
@@ -428,8 +428,8 @@ Antes de publicar o capítulo, conferir cada item marcado com 🔎 diretamente n
 | B4 | Maeda SS, et al. Official position of ABRASSO on body composition by densitometry — part I (technical aspects). *Adv Rheumatol* 2022;62(1):7 | 35307013 | https://doi.org/10.1186/s42358-022-00241-8 |
 | B5 | Maeda SS, et al. Official position of ABRASSO on body composition by densitometry — part II (clinical aspects). *Adv Rheumatol* 2022;62(1):11 | 35365246 | https://doi.org/10.1186/s42358-022-00240-9 |
 | B6 | Clarke BL. Hypoparathyroidism: update of guidelines from the 2022 International Task Force. *Arch Endocrinol Metab* 2022 | 36382749 | https://doi.org/10.20945/2359-3997000000549 |
-| B7 | Bandeira F, et al. Medical management of primary hyperparathyroidism. *Arch Endocrinol Metab* 2022 | 36382758 | https://doi.org/10.20945/2359-3997000000558 |
-| B8 | Ferreira CES, et al. Vitamin D metabolism and extraskeletal outcomes: an update. *Arch Endocrinol Metab* 2022 | 36382764 | https://doi.org/10.20945/2359-3997000000565 |
+| B7 | Medical management of primary hyperparathyroidism. *Arch Endocrinol Metab* 2022 | 36382758 | https://doi.org/10.20945/2359-3997000000558 |
+| B8 | Vitamin D metabolism and extraskeletal outcomes: an update. *Arch Endocrinol Metab* 2022 | 36382764 | https://doi.org/10.20945/2359-3997000000565 |
 | B9 | Dos Santos RN, et al. Reasons to avoid vitamin D deficiency during COVID-19 pandemic. *Arch Endocrinol Metab* 2021 | 34033288 | https://doi.org/10.20945/2359-3997000000291 |
 | B10 | de Paula FJA. Vitamin D: more does not mean better (editorial). *Arch Endocrinol Metab* 2020 | 33047904 | https://doi.org/10.20945/2359-3997000000303 |
 | B11 | Bignardi PR, et al. Is the vitamin D status of patients with COVID-19 associated with reduced mortality? SR & MA. *Arch Endocrinol Metab* 2023 | 36913680 | https://doi.org/10.20945/2359-3997000000588 |
@@ -446,7 +446,7 @@ Antes de publicar o capítulo, conferir cada item marcado com 🔎 diretamente n
 | B17 | Morimoto M, et al. Dietary inflammatory index and low impact fractures (BRAZOS). *Adv Rheumatol* 2019;59(1):16 | 30971320 | https://doi.org/10.1186/s42358-019-0059-7 |
 | B18 | **Stolnicki B, Teixeira BC. The Impact of Hip Fractures in the Public Health System in Brazil (SUS) 2008-2017.** *Rev Bras Ortop* 2020;57(4):552-559 | 35966438 | https://doi.org/10.1055/s-0040-1713762 |
 | B19 | **Peterle VCU, et al. Indicators of morbidity and mortality by femur fractures in older people: a decade-long study in Brazilian hospitals.** *Acta Ortop Bras* 2020;28(3):142-148 | 32536796 | https://doi.org/10.1590/1413-785220202803228393 |
-| B20 | Bortolon PC, et al. Características das internações por fratura de fêmur por queda em idosos no SUS (2006-2008). *Cad Saude Publica* 2011;27(4):733-42 | 21603756 | https://doi.org/10.1590/s0102-311x2011000100010 |
+| B20 | Bortolon PC, Andrade CLT, Andrade CAF. Características das internações por fratura osteoporótica de fêmur em idosos no SUS (2006-2008). *Cad Saude Publica* 2011;27(4):733-42 | 21603756 | https://doi.org/10.1590/s0102-311x2011000400012 |
 | B21 | **Eloi M, et al. Vitamin D deficiency and seasonal variation over the years in São Paulo, Brazil.** *Osteoporos Int* 2016;27(12):3449-3456 | 27339172 | https://doi.org/10.1007/s00198-016-3670-z |
 | B22 | Alert for the high prevalence of vitamin D deficiency in adolescents in a large Brazilian sample. *J Pediatr (Rio J)* 2024 | 38462231 | https://doi.org/10.1016/j.jped.2024.01.003 |
 | B23 | Highly prevalence of vitamin D deficiency among Brazilian women of reproductive age. *Arch Endocrinol Metab* 2016 | 27737331 | https://doi.org/10.1590/2359-3997000000216 |
