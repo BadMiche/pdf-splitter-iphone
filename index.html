@@ -226,6 +226,10 @@
       <h2 class="sec">3 · Formato de saída</h2>
       <p class="hint"><span id="selCount">0</span> divisão(ões) selecionada(s).</p>
 
+      <div class="opt" data-fmt="books" onclick="pickFormat('books')">
+        <div class="radio"></div>
+        <div><div class="ot">PDF único com capítulos (app Livros)</div><div class="od">Mantém o livro inteiro e grava as divisões como sumário/marcadores, que o app Livros mostra como capítulos.</div></div>
+      </div>
       <div class="opt sel" data-fmt="pdf" onclick="pickFormat('pdf')">
         <div class="radio"></div>
         <div><div class="ot">PDF com formatação</div><div class="od">Páginas originais, com imagens e layout intactos. Recomendado.</div></div>
@@ -507,6 +511,35 @@ async function buildPdfFormatted(start,end){
   return await dst.save();
 }
 
+/* PDF inteiro com sumário (Outlines) — o app Livros lê como capítulos */
+async function buildPdfWithOutline(targets){
+  const { PDFName, PDFHexString, PDFNumber, PDFNull } = PDFLib;
+  const doc=await PDFDocument.load(state.arrayBuffer.slice(0),{ignoreEncryption:true});
+  const ctx=doc.context, pages=doc.getPages();
+  const items=[...targets].sort((a,b)=>a.start-b.start);
+  const rootRef=ctx.nextRef();
+  const refs=items.map(()=>ctx.nextRef());
+  items.forEach((d,i)=>{
+    const pg=pages[Math.min(Math.max(d.start,1),pages.length)-1];
+    const dict=ctx.obj({});
+    dict.set(PDFName.of("Title"),PDFHexString.fromText(d.title));
+    dict.set(PDFName.of("Parent"),rootRef);
+    dict.set(PDFName.of("Dest"),ctx.obj([pg.ref,PDFName.of("XYZ"),PDFNull,PDFNull,PDFNull]));
+    if(i>0) dict.set(PDFName.of("Prev"),refs[i-1]);
+    if(i<refs.length-1) dict.set(PDFName.of("Next"),refs[i+1]);
+    ctx.assign(refs[i],dict);
+  });
+  const root=ctx.obj({});
+  root.set(PDFName.of("Type"),PDFName.of("Outlines"));
+  root.set(PDFName.of("First"),refs[0]);
+  root.set(PDFName.of("Last"),refs[refs.length-1]);
+  root.set(PDFName.of("Count"),PDFNumber.of(refs.length));
+  ctx.assign(rootRef,root);
+  doc.catalog.set(PDFName.of("Outlines"),rootRef);
+  doc.catalog.set(PDFName.of("PageMode"),PDFName.of("UseOutlines"));
+  return await doc.save();
+}
+
 async function buildPdfText(start,end,title){
   const text=await getSectionText(start,end);
   const doc=new jsPDF({unit:"pt",format:"a4"});
@@ -595,6 +628,15 @@ async function exportFiles(which){
   const files=[]; // {name, data(Uint8Array|string), isText}
 
   try{
+    if(fmt==="books"){
+      txt.textContent="Gravando capítulos no PDF…";
+      const data=await buildPdfWithOutline(targets);
+      fill.style.width="100%";
+      const name=`${sanitize(baseName)} - capitulos.pdf`;
+      showSaveUI(new File([data],name,{type:"application/pdf"}),new Blob([data],{type:"application/pdf"}),name);
+      txt.textContent="Arquivo pronto ✓ — salve e abra no app Livros.";
+      return;
+    }
     for(let i=0;i<targets.length;i++){
       const d=targets[i];
       txt.textContent=`Gerando ${i+1}/${targets.length}: ${d.title.slice(0,28)}…`;
