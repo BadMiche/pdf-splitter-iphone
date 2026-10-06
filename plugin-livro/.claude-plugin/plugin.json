@@ -1,0 +1,5 @@
+{
+  "name": "livro-em-resumos",
+  "version": "1.0.0",
+  "description": "Divide um livro em PDF em capítulos, extrai o texto de cada capítulo para .md e gera resumos a partir dos .md."
+}
